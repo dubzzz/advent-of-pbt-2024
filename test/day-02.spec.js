@@ -14,3 +14,11 @@ test.prop([fc.uniqueArray(letterArb, { selector: (letter) => letter.id })])(
     expect(letters).toEqual(lettersWithDistinctIds);
   }
 );
+
+test.prop([letterArb])(
+  "day #2: should not drop any letter when receiving only one",
+  (letter) => {
+    const letters = dropLettersFromDuplicatedSenders([letter]);
+    expect(letters).toEqual([letter]);
+  }
+);
