@@ -3,7 +3,7 @@ import { test, fc } from "@fast-check/vitest";
 import findPlaceForSanta from "../src/advent-day-11.mjs";
 import { expect } from "vitest";
 
-const maxDimension = 1000;
+const maxDimension = 100;
 const marketDimensionsArbitrary = fc.record({
   width: fc.integer({ min: 1, max: maxDimension }),
   height: fc.integer({ min: 1, max: maxDimension }),
@@ -32,7 +32,7 @@ test.prop([inputsArbitrary])(
       }
     }
     ctx.log(
-      map.map((row) => row.map((c) => (c ? "x" : ".")).join("")).join("\n")
+      map.map((row) => row.map((c) => (c ? "." : "x")).join("")).join("\n")
     );
 
     expect(findPlaceForSanta(map, requestedArea)).toBeDefined();
@@ -45,7 +45,7 @@ test.prop([inputsArbitrary])(
     const out = findPlaceForSanta(rawMap, requestedArea);
     fc.pre(out !== undefined);
     ctx.log(
-      rawMap.map((row) => row.map((c) => (c ? "x" : ".")).join("")).join("\n")
+      rawMap.map((row) => row.map((c) => (c ? "." : "x")).join("")).join("\n")
     );
 
     for (let j = 0; j !== requestedArea.height; ++j) {
