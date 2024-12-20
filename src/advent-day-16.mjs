@@ -1,0 +1,1 @@
+export default function(e){return(2*e^e)>>1}
